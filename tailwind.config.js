@@ -1,16 +1,15 @@
 // @ts-check
-const { fontFamily } = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+import { fontFamily } from 'tailwindcss/defaultTheme'
+import colors from 'tailwindcss/colors'
+import typography from '@tailwindcss/typography'
+import forms from '@tailwindcss/forms'
 
 /** @type {import("tailwindcss/types").Config } */
-module.exports = {
+const config = {
   content: [
-    './node_modules/pliny/**/*.js',
-    './app/**/*.{js,ts,jsx,tsx}',
-    './pages/**/*.{js,ts,tsx}',
-    './components/**/*.{js,ts,tsx}',
-    './layouts/**/*.{js,ts,tsx}',
-    './data/**/*.mdx',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   darkMode: 'class',
   theme: {
@@ -24,9 +23,52 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
       },
+      // colors: {
+      //   primary: colors.pink,
+      //   gray: colors.gray,
+      // },
       colors: {
-        primary: colors.pink,
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+
+        // primary: {
+        //   DEFAULT: "hsl(var(--primary))",
+        //   foreground: "hsl(var(--primary-foreground))",
+        // },
+        primary: colors.amber,
         gray: colors.gray,
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+      },
+      borderRadius: {
+        lg: `var(--radius)`,
+        md: `calc(var(--radius) - 2px)`,
+        sm: 'calc(var(--radius) - 4px)',
       },
       zIndex: {
         60: '60',
@@ -72,5 +114,7 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [typography, forms],
 }
+
+export default config
